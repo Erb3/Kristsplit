@@ -3,7 +3,7 @@ import fs from 'fs';
 const krist = new kristLib.KristApi();
 
 const configFile = await fs.promises.readFile('./config.json');
-const config = JSON.parse(configFile);
+const config = JSON.parse(configFile.splits);
 
 const registeredSplits = {};
 
