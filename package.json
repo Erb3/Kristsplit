@@ -1,11 +1,8 @@
 {
   "name": "kristsplit",
   "version": "1.0.0",
-  "description": "A KristSplitter written in NodeJS. Splits krist from one wallet into others",
+  "description": "A Krist splitter written in NodeJS. Splits krist from one wallet into other(s)",
   "main": "app.js",
-  "scripts": {
-    "test": "jest"
-  },
   "type": "module",
   "repository": {
     "type": "git",
@@ -24,5 +21,9 @@
   "homepage": "https://github.com/Erb3/Kristsplit#readme",
   "dependencies": {
     "krist": "^2.0.1"
+  },
+  "funding": {
+    "type": "krist",
+    "url": "https://krist.club/send?to=kristcatm0&metadata=message%3DKrist+splitter+donation"
   }
 }
