@@ -1,16 +1,20 @@
-[
-  {
-    "input": "[PRIVATEKEY OF INPUT]",
-    "output": [
-      {
-        "address": "[OUTPUT ONE]",
-        "percent": 50
-      },
-      {
-        "address": "[OUTPUT TWO]",
-        "percent": 50
-      }
-    ],
-    "rest": "KEEP"
-  }
-]
+{
+  "$schema": "https://raw.githubusercontent.com/Erb3/Kristsplit/main/config.schema.json",
+  "splits": [
+    {
+      "input": "[INPUT PRIVATEKEY]",
+      "inputFormat": "api",
+      "output": [
+        {
+          "address": "[OUTPUT ONE]",
+          "percent": 50
+        },
+        {
+          "address": "[OUTPUT TWO]",
+          "percent": 50
+        }
+      ],
+      "rest": "REFUND"
+    }
+  ]
+}
