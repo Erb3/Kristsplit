@@ -1,0 +1,27 @@
+{
+  "name": "kristsplit",
+  "version": "1.0.0",
+  "description": "A KristSplitter written in NodeJS. Splits krist from one wallet into others",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Erb3/Kristsplit.git"
+  },
+  "keywords": [
+    "krist",
+    "SwitchCraft",
+    "splitter"
+  ],
+  "author": "Erb3",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Erb3/Kristsplit/issues"
+  },
+  "homepage": "https://github.com/Erb3/Kristsplit#readme",
+  "dependencies": {
+    "krist": "^2.0.1"
+  }
+}
