@@ -1,0 +1,16 @@
+[
+  {
+    "input": "[PRIVATEKEY OF INPUT]",
+    "output": [
+      {
+        "address": "[OUTPUT ONE]",
+        "percent": 50
+      },
+      {
+        "address": "[OUTPUT TWO]",
+        "percent": 50
+      }
+    ],
+    "rest": "KEEP"
+  }
+]
