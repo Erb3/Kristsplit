@@ -17,7 +17,7 @@
 
           "inputFormat": {
             "type": "string",
-            "enum": ["api", "kristwallet"]
+            "enum": ["api", "kristwallet", "password"]
           },
 
           "output": {

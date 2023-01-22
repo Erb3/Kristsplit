@@ -3,16 +3,22 @@ import fs from 'fs';
 const krist = new kristLib.KristApi();
 
 const configFile = await fs.promises.readFile('./config.json');
-const config = JSON.parse(configFile.splits);
+const config = JSON.parse(configFile).splits;
 
 const registeredSplits = {};
 
 config.forEach(async (val) => {
-  const [address] = await kristLib.calculateAddress(val.input, undefined, val.inputFormat);
+  const [address, pkey] = await kristLib.calculateAddress(
+    val.input,
+    undefined,
+    val.inputFormat == 'password' ? undefined : val.inputFormat
+  );
+
+  console.log(address, pkey);
 
   registeredSplits[address] = {
-    privatekey: val.input,
-    privatekeyFormat: val.inputFormat,
+    privatekey: pkey,
+    privatekeyFormat: val.inputFormat == 'password' ? 'kristwallet' : val.inputFormat,
     split: val.output,
     leftOvers: val.rest,
   };
