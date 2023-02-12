@@ -8,6 +8,17 @@ Then you can go multiple paths for deploying.
 
 Krist is a virtual currency made by 3d6, now maintained by tmpim. More information about [Krist](https://krist.dev). It is most famous for being used on the SwitchCraft minecraft server.
 
+## Todo
+
+Currently implemented:
+
+- Split krist sent to one address
+
+Not done yet:
+
+- Split krist sent to a specific name
+- Split krist sent to a specific metaname
+
 ## Deploying
 
 ### Docker run
