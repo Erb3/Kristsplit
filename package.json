@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/Erb3/Kristsplit#readme",
   "dependencies": {
-    "krist": "^2.0.1"
+    "krist": "^2.0.2"
   },
   "funding": {
     "type": "krist",
