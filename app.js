@@ -1,24 +1,26 @@
-import kristLib from 'krist';
+import { KristApi, calculateAddress } from 'krist';
 import fs from 'fs';
-const krist = new kristLib.KristApi();
+const krist = new KristApi({
+  userAgent: "KristSplit by PC_Cat | Operator: ??? | github.com/Erb3/Kristsplit"
+});
 
 const configFile = await fs.promises.readFile('./config.json');
-const config = JSON.parse(configFile).splits;
+const config = JSON.parse(configFile.toString()).splits;
 
 const registeredSplits = {};
 
 config.forEach(async (val) => {
-  const [address, pkey] = await kristLib.calculateAddress(
+  const [address, pkey] = await calculateAddress(
     val.input,
     undefined,
-    val.inputFormat == 'password' ? undefined : val.inputFormat
+    val.inputFormat === 'password' ? undefined : val.inputFormat
   );
 
   console.log(address, pkey);
 
   registeredSplits[address] = {
     privatekey: pkey,
-    privatekeyFormat: val.inputFormat == 'password' ? 'kristwallet' : val.inputFormat,
+    privatekeyFormat: val.inputFormat === 'password' ? 'kristwallet' : val.inputFormat,
     split: val.output,
     leftOvers: val.rest,
   };
@@ -42,7 +44,7 @@ ws.on('transaction', async ({ transaction }) => {
     const kristAmount = Math.floor(percent * split.percent);
     left -= kristAmount;
 
-    if (kristAmount != 0) {
+    if (kristAmount !== 0) {
       krist.makeTransaction(split.address, kristAmount, {
         walletFormat: splits.privatekeyFormat,
         privatekey: splits.privatekey,
@@ -51,7 +53,7 @@ ws.on('transaction', async ({ transaction }) => {
     }
   });
 
-  if (left != 0 && splits.leftOvers == 'REFUND') {
+  if (left !== 0 && splits.leftOvers === 'REFUND') {
     console.log('Refunding leftovers: ' + left);
     krist.makeTransaction(transaction.from, left, {
       walletFormat: splits.privatekeyFormat,
@@ -66,4 +68,4 @@ ws.on('ready', async () => {
   console.log('Connected to WebSocket! I am: ', me);
 });
 
-ws.connect();
+await ws.connect();
