@@ -1,5 +1,7 @@
-import { KristApi, calculateAddress } from 'krist';
+import kristLib from "krist";
 import fs from 'fs';
+
+const {KristApi, calculateAddress} = kristLib
 const krist = new KristApi({
   userAgent: "KristSplit by PC_Cat | Operator: ??? | github.com/Erb3/Kristsplit"
 });
@@ -30,7 +32,7 @@ const ws = krist.createWsClient({
   initialSubscriptions: ['transactions'],
 });
 
-ws.on('transaction', async ({ transaction }) => {
+ws.on('transaction', async ({transaction}) => {
   if (!registeredSplits[transaction.to]) {
     return;
   }
@@ -55,7 +57,8 @@ ws.on('transaction', async ({ transaction }) => {
 
   if (left !== 0 && splits.leftOvers === 'REFUND') {
     console.log('Refunding leftovers: ' + left);
-    krist.makeTransaction(transaction.from, left, {
+
+    await krist.makeTransaction(transaction.from, left, {
       walletFormat: splits.privatekeyFormat,
       privatekey: splits.privatekey,
       metadata: 'Powered by=KristSplit;donate=true;message=Here is the leftovers that could not be split!',
