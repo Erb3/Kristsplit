@@ -1,6 +1,6 @@
 {
   "name": "kristsplit",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "A Krist splitter written in NodeJS. Splits krist from one wallet into other(s)",
   "main": "app.js",
   "type": "module",
