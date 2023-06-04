@@ -3,6 +3,7 @@
 ![GitHub Docker Publish Status](https://img.shields.io/github/actions/workflow/status/Erb3/Kristsplit/docker-image.yml)
 
 A Typescript application to split krist from one wallet to other(s).
+Note: As of 04/06-2023 the license changed to MPL 2.0
 
 ## Configuring
 
@@ -42,17 +43,6 @@ Krist is a virtual currency made by 3d6, now maintained by tmpim. More informati
 
 No. You cannot use your Kristsplit v1 config with the new version.
 
-## Todo
-
-Currently implemented:
-
-- Split krist sent to an address
-
-Not done yet:
-
-- Split krist sent to a specific name
-- Split krist sent to a specific metaname
-
 ## Deploying
 
 ### Docker run
@@ -77,3 +67,14 @@ kristsplit:
       source: "[Output of `pwd` in the directory of your config]/config.json"
       target: "/usr/src/app/config.json"
 ```
+
+## Todo
+
+Currently implemented:
+
+- Split krist sent to an address
+
+Not done yet:
+
+- Split krist sent to a specific name
+- Split krist sent to a specific metaname
