@@ -2,9 +2,11 @@
 
 ![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/Erb3/Kristsplit/docker-image.yml)
 
-A simple NodeJS app to split krist from one wallet to other(s).
+A simple Typescript app to split krist from one wallet to other(s).
 To get started download the config.example.json file. Modify it to your needs.
 Then you can go multiple paths for deploying.
+
+We use the versioning scheme of `rewrite.major.minor`.
 
 Krist is a virtual currency made by 3d6, now maintained by tmpim. More information about [Krist](https://krist.dev). It is most famous for being used on the SwitchCraft minecraft server.
 
@@ -40,6 +42,6 @@ kristsplit:
   restart: unless-stopped
   volumes:
     - type: bind
-      source: '[Output of `pwd` in the directory of your config]/config.json'
-      target: '/usr/src/app/config.json'
+      source: "[Output of `pwd` in the directory of your config]/config.json"
+      target: "/usr/src/app/config.json"
 ```

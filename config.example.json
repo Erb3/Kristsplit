@@ -2,19 +2,18 @@
   "$schema": "https://raw.githubusercontent.com/Erb3/Kristsplit/main/config.schema.json",
   "splits": [
     {
-      "input": "[INPUT PRIVATEKEY]",
-      "inputFormat": "api",
-      "output": [
-        {
-          "address": "[OUTPUT ONE]",
-          "percent": 50
-        },
-        {
-          "address": "[OUTPUT TWO]",
-          "percent": 50
-        }
-      ],
-      "rest": "REFUND"
+      "input": "[INPUT PRIVATEKEY or PASSWORD]",
+      "output": {
+        "kristcatm0": 50,
+        "kristcatm1": 50
+      }
+    },
+    {
+      "input": "[INPUT KEY]",
+      "output": {
+        "kristcatm0": 25,
+        "pc_cat@sc.kst": 75
+      }
     }
   ]
 }

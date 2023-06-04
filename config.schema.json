@@ -1,8 +1,9 @@
 {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "$id": "https://raw.githubusercontent.com/Erb3/Kristsplit/main/config.schema.json",
-  "title": "KristSplit config schema",
-  "description": "The JSON schema for KristSplit",
+  "title": "Kristsplit config schema",
+  "description": "The JSON schema for Kristsplit config",
+
   "type": "object",
   "properties": {
     "splits": {
@@ -15,43 +16,35 @@
             "type": "string"
           },
 
-          "inputFormat": {
-            "type": "string",
-            "enum": ["api", "kristwallet", "password"]
-          },
-
           "output": {
-            "type": "array",
-            "uniqueItems": true,
-
-            "items": {
-              "type": "object",
-              "properties": {
-                "address": {
-                  "type": "string",
-                  "maxLength": 10,
-                  "minLength": 10,
-                  "pattern": "^k[a-z0-9]{9}"
+            "anyOf": [
+              {
+                "type": "object",
+                "patternProperties": {
+                  "^k[a-z0-9]{9}": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 100
+                  },
+                  ".kst$": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 100
+                  }
                 },
-
-                "percent": {
-                  "type": "number",
-                  "minimum": 1,
-                  "maximum": 100
-                }
+                "additionalProperties": false
               },
-              "required": ["address", "percent"]
-            },
-            "minItems": 1
-          },
-
-          "rest": {
-            "type": "string",
-            "enum": ["REFUND", "KEEP"]
+              {
+                "type": "string"
+              }
+            ]
           }
         },
-        "required": ["input", "output", "rest", "inputFormat"]
+        "required": ["input", "output"]
       }
+    },
+    "node": {
+      "type": "string"
     }
   },
   "required": ["splits"]
