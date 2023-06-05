@@ -1,8 +1,10 @@
 # Kristsplit
 
-![GitHub Docker Publish Status](https://img.shields.io/github/actions/workflow/status/Erb3/Kristsplit/docker-image.yml)
+![GitHub Docker Publish Status](https://img.shields.io/github/actions/workflow/status/Erb3/Kristsplit/docker-image.yml?label=docker+publish&style=plastic)
+![GitHub CI Status](https://img.shields.io/github/actions/workflow/status/Erb3/kristsplit/ci.yml?label=ci&style=plastic)
 
-A Typescript application to split krist from one wallet to other(s).
+A Typescript application to split incoming krist from one wallet to other(s).
+Lets say a shop earns 10 KST, and Player A should get a 42% split, then this application will split the incoming 10 KST to player A and player B based on the configured percents.
 Note: As of 04/06-2023 the license changed to MPL 2.0
 
 ## Configuring
@@ -43,6 +45,10 @@ Krist is a virtual currency made by 3d6, now maintained by tmpim. More informati
 
 No. You cannot use your Kristsplit v1 config with the new version.
 
+### Krist
+
+Krist is a virtual currency used on some Minecraft servers, mainly [SwitchCraft](https://sc3.io).
+
 ## Deploying
 
 ### Docker run
@@ -67,6 +73,10 @@ kristsplit:
       source: "[Output of `pwd` in the directory of your config]/config.json"
       target: "/usr/src/app/config.json"
 ```
+
+## Tests
+
+This application is tested-ish with Jest. After installing dependencies, you can run `npm test` to run the tests.
 
 ## Todo
 
