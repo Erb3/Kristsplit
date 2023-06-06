@@ -7,7 +7,7 @@ import {
 import { Logger, ILogObj } from "tslog";
 import { Split } from "./types";
 import { calculateOutputs, getWalletFormat } from "./utils";
-import { configSchema, loadConfig } from "./config";
+import { loadConfig } from "./config";
 
 const logger: Logger<ILogObj> = new Logger({
   name: "Kristsplit",

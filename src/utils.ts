@@ -1,8 +1,4 @@
-import {
-  KristAuthOptionsPrivatekey,
-  KristWalletFormat,
-  KristWalletFormatName,
-} from "krist";
+import { KristWalletFormatName } from "krist";
 import { OutputObject } from "./types";
 import { ILogObj, Logger } from "tslog";
 

@@ -1,6 +1,6 @@
 import { expect, test, describe } from "@jest/globals";
 import { calculateOutputs } from "../src/utils";
-import { OutputObject, Split } from "../src/types";
+import { OutputObject } from "../src/types";
 
 const splits = {
   "100": {
