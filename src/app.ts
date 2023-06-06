@@ -1,9 +1,8 @@
-import { calculateAddress, KristApi, KristWsClient } from "krist";
-import fs from "fs/promises";
+import { calculateAddress, KristApi, KristWsClient as kwsClient } from "krist";
 import { Logger, ILogObj } from "tslog";
-import { z } from "zod";
 import { Split } from "./types";
 import { calculateOutputs } from "./utils";
+import { loadConfig } from "./config";
 
 const logger: Logger<ILogObj> = new Logger({
   name: "Kristsplit",
@@ -12,27 +11,8 @@ const logger: Logger<ILogObj> = new Logger({
   prettyLogTimeZone: "local",
 });
 
-const configSchema = z.object({
-  node: z.string().url().startsWith("https://").optional(),
-  splits: z.array(
-    z.object({
-      input: z.string(),
-      output: z.union([
-        z.string(),
-        z.record(
-          z.union([
-            z.string().length(10).startsWith("k"),
-            z.string().endsWith(".kst"),
-          ]),
-          z.number().min(0).max(100).int()
-        ),
-      ]),
-    })
-  ),
-});
-
 async function transfer(
-  kws: KristWsClient,
+  kws: kwsClient,
   to: string,
   amount: number,
   from: string
@@ -48,16 +28,8 @@ async function transfer(
 }
 
 async function main() {
-  const configFile = await fs.readFile("config.json");
-  const JSONConfig = JSON.parse(configFile.toString());
-  logger.info("Loaded config file.");
-
-  const parsedConfig = await configSchema.safeParseAsync(JSONConfig);
-  if (!parsedConfig.success) {
-    logger.error("Couldn't parse config", parsedConfig.error);
-    return;
-  }
-  const config = parsedConfig.data;
+  const config = await loadConfig(logger);
+  if (!config) return;
 
   const splits: { [address: string]: Split } = {};
   config.splits.forEach(async (split) => {
