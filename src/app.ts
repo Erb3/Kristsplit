@@ -20,8 +20,7 @@ async function transfer(
   kws: kwsClient,
   to: string,
   amount: number,
-  from: string,
-  format: KristWalletFormatName | undefined
+  from: string
 ) {
   if (!amount) return;
   logger.info(`Sending krist to ${to} worth ${amount}`);
@@ -71,24 +70,12 @@ async function main() {
     const split = splits[tx.to];
 
     if (typeof split.outputs === "string") {
-      await transfer(
-        kristWS,
-        split.outputs,
-        tx.value,
-        split.privatekey,
-        split.walletFormat
-      );
+      await transfer(kristWS, split.outputs, tx.value, split.privatekey);
     } else {
       const toTransfer = calculateOutputs(split.outputs, tx.value);
       Object.keys(toTransfer).forEach(async (address) => {
         const value = toTransfer[address];
-        await transfer(
-          kristWS,
-          address,
-          value,
-          split.privatekey,
-          split.walletFormat
-        );
+        await transfer(kristWS, address, value, split.privatekey);
       });
     }
   });
