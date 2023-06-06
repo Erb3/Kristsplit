@@ -22,11 +22,11 @@ The JSON file is a object, which has the following properties:
 
 `splits` is an array of different splits. Each item in this array is an object which features the following properties:
 
-- `privatekey`
+- `secret`
 - `output`
 - `walletFormat`
 
-The `private key` field will contain the private key or of your wallet. It should hopefully determine itself what format it is, but if you face issues with this please open a GitHub issue. For information on how to get your private key check out the section about "Getting private key from KristWeb" under the "FAQ" section.
+The `secret` field will contain the private key (or password) of your wallet. It should hopefully determine itself what format it is, but if you face issues with this please open a GitHub issue. For information on how to get your private key or password check out the section about "Getting private key from KristWeb" under the "FAQ" section.
 
 `output` is either a string with the krist address which all krist should be tunneled to, or an object. If you go the route of objects, you have to make a key-value pair where the key is an output address, and the value is a number representing the percent of input to send to it. Just read the example config.
 

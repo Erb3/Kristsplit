@@ -12,7 +12,7 @@
         "type": "object",
 
         "properties": {
-          "privatekey": {
+          "secret": {
             "type": "string"
           },
 
@@ -49,7 +49,7 @@
             ]
           }
         },
-        "required": ["privatekey", "output"]
+        "required": ["secret", "output"]
       }
     },
     "node": {

@@ -8,7 +8,6 @@ import { Logger, ILogObj } from "tslog";
 import { Split } from "./types";
 import { calculateOutputs, getWalletFormat } from "./utils";
 import { configSchema, loadConfig } from "./config";
-import { z } from "zod";
 
 const logger: Logger<ILogObj> = new Logger({
   name: "Kristsplit",
@@ -41,9 +40,9 @@ async function main() {
   const splits: { [address: string]: Split } = {};
   config.splits.forEach(async (split) => {
     const [address, pkey] = await calculateAddress(
-      split.privatekey,
+      split.secret,
       undefined,
-      getWalletFormat(split.privatekey, split.walletFormat, logger)
+      getWalletFormat(split.secret, split.walletFormat, logger)
     );
     logger.info(
       `Registering split for address ${address} with private key ${pkey}`

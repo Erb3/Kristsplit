@@ -7,7 +7,7 @@ const configSchema = z.object({
   node: z.string().url().startsWith("https://").optional(),
   splits: z.array(
     z.object({
-      privatekey: z.string(),
+      secret: z.string(),
       walletFormat: z.enum(["kristwallet", "api", "jwalelset"]).optional(),
       output: z.union([
         z.string(),
