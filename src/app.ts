@@ -29,7 +29,7 @@ async function transfer(
   kws.makeTransaction(to, amount, {
     metadata: `PoweredBy=Kristsplit;PoweredByUrl=https://github.com/Erb3/Kristsplit/;message=Here is your split!`,
     privatekey: from,
-    walletFormat: getWalletFormat(from, format, logger),
+    walletFormat: "api",
   });
 }
 
