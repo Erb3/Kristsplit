@@ -22,24 +22,27 @@ The JSON file is a object, which has the following properties:
 
 `splits` is an array of different splits. Each item in this array is an object which features the following properties:
 
-- `input`
+- `privatekey`
 - `output`
+- `walletFormat`
 
-The `input` field will contain the private key or password of your wallet. It should hopefully determine itself what format it is, but if you face issues with this please open a GitHub issue. For information on how to get your private key check out the section about "Getting privatekey from KristWeb" under the "FAQ" section.
+The `private key` field will contain the private key or of your wallet. It should hopefully determine itself what format it is, but if you face issues with this please open a GitHub issue. For information on how to get your private key check out the section about "Getting private key from KristWeb" under the "FAQ" section.
 
-`output` is either a string with the krist address which all input krist should be tunneled to, or an object. If you go the route of objects, you have to make a key-value pair where the key is an output address, and the value is a number representing the percent of input to send to it.
+`output` is either a string with the krist address which all krist should be tunneled to, or an object. If you go the route of objects, you have to make a key-value pair where the key is an output address, and the value is a number representing the percent of input to send to it. Just read the example config.
+
+`walletFormat` refers to the wallet format you want to use with your private key. You most likly want KristWallet, but in some cases your private key might already be transformed, and you should use `api`. This field is optional, and if you don't specify it, it will guess based on if your private key ends in `-000`.
 
 Anywhere in the config that you can put an address, you can also put a krist name with or without a metaname.
 
 ## FAQ
 
-### Getting privatekey from KristWeb
+### Getting your private key from KristWeb
 
-Then you can go multiple paths for deploying.
-
-We use the versioning scheme of `rewrite.major.minor`.
-
-Krist is a virtual currency made by 3d6, now maintained by tmpim. More information about [Krist](https://krist.dev). It is most famous for being used on the SwitchCraft minecraft server.
+1. Go to "My Wallets"
+2. Find the wallet you want to use
+3. Find and press the "..." menu
+4. Press "Wallet info"
+5. Find where it says "Privatekey", click "Reveal".
 
 ### Can I use my Kristsplit v1 config with v2
 
@@ -47,7 +50,14 @@ No. You cannot use your Kristsplit v1 config with the new version.
 
 ### Krist
 
-Krist is a virtual currency used on some Minecraft servers, mainly [SwitchCraft](https://sc3.io).
+Krist is a virtual currency used on some Minecraft servers, mainly [SwitchCraft](https://sc3.io). More information about [Krist at krist.dev](https://krist.dev)
+
+### Private key? Password?
+
+Private key and password are two different things in the krist world!
+A password, is what you give into a wallet hasher, and it outputs a private key!
+While the config of Kristsplit may be a bit missleading since it uses "private key" for both private keys and passwords, they are two different things!
+If you have a private key (hashed password), you should set the format to `API`.
 
 ## Deploying
 

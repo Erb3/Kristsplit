@@ -12,8 +12,12 @@
         "type": "object",
 
         "properties": {
-          "input": {
+          "privatekey": {
             "type": "string"
+          },
+
+          "walletFormat": {
+            "enum": ["kristwallet", "api", "jwalelset"]
           },
 
           "output": {
@@ -45,7 +49,7 @@
             ]
           }
         },
-        "required": ["input", "output"]
+        "required": ["privatekey", "output"]
       }
     },
     "node": {

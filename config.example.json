@@ -2,11 +2,12 @@
   "$schema": "https://raw.githubusercontent.com/Erb3/Kristsplit/main/config.schema.json",
   "splits": [
     {
-      "input": "[INPUT PRIVATEKEY OR PASSWORD]",
+      "privatekey": "[Wallet Private Key]",
       "output": "kristcatm0"
     },
     {
-      "input": "[INPUT KEY]",
+      "privatekey": "[Wallet Private Key]",
+      "walletFormat": "api",
       "output": {
         "kristcatm0": 25,
         "pc_cat@sc.kst": 75

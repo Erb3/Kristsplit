@@ -1,4 +1,10 @@
+import {
+  KristAuthOptionsPrivatekey,
+  KristWalletFormat,
+  KristWalletFormatName,
+} from "krist";
 import { OutputObject } from "./types";
+import { ILogObj, Logger } from "tslog";
 
 function calculateOutputs(outputs: OutputObject, value: number) {
   const result: OutputObject = {};
@@ -21,4 +27,16 @@ function calculateOutputs(outputs: OutputObject, value: number) {
   return result;
 }
 
-export { calculateOutputs };
+function getWalletFormat(
+  privatekey: string,
+  format: KristWalletFormatName | undefined,
+  logger: Logger<ILogObj>
+): KristWalletFormatName {
+  if (format) return format;
+  logger.warn("No wallet format supplied, guessing format.");
+
+  // If it has -000, it means transformations have been applied, and we should use API. If it doesn't, it can either be a un-transformed kristwallet or a jwalelset
+  return privatekey.endsWith("-000") ? "api" : "kristwallet";
+}
+
+export { calculateOutputs, getWalletFormat };
