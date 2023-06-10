@@ -1,9 +1,4 @@
-import {
-  calculateAddress,
-  KristApi,
-  KristWalletFormatName,
-  KristWsClient as kwsClient,
-} from "krist";
+import { calculateAddress, KristApi, KristWsClient as kwsClient } from "krist";
 import { Logger, ILogObj } from "tslog";
 import { Split } from "./types";
 import { calculateOutputs, getWalletFormat } from "./utils";
@@ -25,7 +20,7 @@ async function transfer(
   if (!amount) return;
   logger.info(`Sending krist to ${to} worth ${amount}`);
 
-  kws.makeTransaction(to, amount, {
+  await kws.makeTransaction(to, amount, {
     metadata: `PoweredBy=Kristsplit;PoweredByUrl=https://github.com/Erb3/Kristsplit/;message=Here is your split!`,
     privatekey: from,
     walletFormat: "api",
