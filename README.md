@@ -5,7 +5,6 @@
 
 A Typescript application to split incoming krist from one wallet to other(s).
 Lets say a shop earns 10 KST, and Player A should get a 42% split, then this application will split the incoming 10 KST to player A and player B based on the configured percents.
-Note: As of 04/06-2023 the license changed to MPL 2.0
 
 ## Configuring
 
@@ -56,7 +55,6 @@ Krist is a virtual currency used on some Minecraft servers, mainly [SwitchCraft]
 
 Private key and password are two different things in the krist world!
 A password, is what you give into a wallet hasher, and it outputs a private key!
-While the config of Kristsplit may be a bit missleading since it uses "private key" for both private keys and passwords, they are two different things!
 If you have a private key (hashed password), you should set the format to `API`.
 
 ## Deploying
@@ -87,6 +85,10 @@ kristsplit:
 ## Tests
 
 This application is tested-ish with Jest. After installing dependencies, you can run `npm test` to run the tests.
+
+## Linting
+
+Kristsplit takes use of eslint to lint and format the code. Run `npm run lint` to lint the code. If you wish to automatically fix some problems, use `npm run lint -- --fix`
 
 ## Todo
 

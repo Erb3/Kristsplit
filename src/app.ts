@@ -21,7 +21,7 @@ async function transfer(
   logger.info(`Sending krist to ${to} worth ${amount}`);
 
   await kws.makeTransaction(to, amount, {
-    metadata: `PoweredBy=Kristsplit;PoweredByUrl=https://github.com/Erb3/Kristsplit/;message=Here is your split!`,
+    metadata: "PoweredBy=Kristsplit;PoweredByUrl=https://github.com/Erb3/Kristsplit/;message=Here is your split!",
     privatekey: from,
     walletFormat: "api",
   });
@@ -49,7 +49,7 @@ async function main() {
     };
   });
   const krist = new KristApi({
-    userAgent: `Kristsplit/2 by Erb3 (https://github.com/Erb3/Kristsplit/)`,
+    userAgent: "Kristsplit/2 by Erb3 (https://github.com/Erb3/Kristsplit/)",
     syncNode: config.node,
   });
 
