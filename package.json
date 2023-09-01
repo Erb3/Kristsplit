@@ -27,7 +27,7 @@
   "dependencies": {
     "krist": "^2.0.4",
     "tslog": "^4.8.2",
-    "zod": "^3.21.4"
+    "zod": "^3.22.2"
   },
   "devDependencies": {
     "@types/jest": "^29.5.2",
