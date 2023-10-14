@@ -1,23 +1,21 @@
-# Kristsplit
+<h1 align="center"> Kristsplit </h1>
+<p align="center">Simple applicaiton to <strong>redirect your krist</strong>!</p>
 
-![GitHub Docker Publish Status](https://img.shields.io/github/actions/workflow/status/Erb3/Kristsplit/docker-image.yml?label=docker+publish&style=plastic)
-![GitHub CI Status](https://img.shields.io/github/actions/workflow/status/Erb3/kristsplit/ci.yml?label=ci&style=plastic)
-
-A Typescript application to split incoming krist from one wallet to other(s).
-Lets say a shop earns 10 KST, and Player A should get a 42% split, then this application will split the incoming 10 KST to player A and player B based on the configured percents.
+![GitHub Docker Publish Status](https://img.shields.io/github/actions/workflow/status/Erb3/kristsplit/docker-image.yml?style=flat-square&logo=docker&label=Docker%20image)
+![GitHub Action Tests](https://img.shields.io/github/actions/workflow/status/Erb3/kristsplit/ci.yml?style=flat-square&logo=jest&label=Tests)
 
 ## Configuring
 
-To get started download the [`config.example.json`](https://raw.githubusercontent.com/Erb3/Kristsplit/main/config.example.json) file, as `config.json`.
-Once you have that file, you will need to modify it to your needs. Hopefully you can understand how the format works based on what is already in the file,
-and the JSON schema will help you with autocompletion if you use a IDE which features JSON schemas, like VSCode.
+To get started download the [config.example.json] file as `config.json`.
+You will need to modify it to your own needs. Hopefully you can understand how the format works based on the contents.
+There is a JSON schema which will help you with autocompletition if you use a supported IDE, like VSCode.
 
-The JSON file is a object, which has the following properties:
+The JSON file is an object, which has the following properties:
 
 - `splits`
 - `node`
 
-`node` refers to the krist sync node to use. This property is optional, and is set to the krist.dev node by default.
+`node` refers to the krist syncnode to use. This property is optional, and is set to the krist.dev node by default.
 
 `splits` is an array of different splits. Each item in this array is an object which features the following properties:
 
@@ -25,11 +23,16 @@ The JSON file is a object, which has the following properties:
 - `output`
 - `walletFormat`
 
-The `secret` field will contain the private key (or password) of your wallet. It should hopefully determine itself what format it is, but if you face issues with this please open a GitHub issue. For information on how to get your private key or password check out the section about "Getting private key from KristWeb" under the "FAQ" section.
+The `secret` field will contain the private key (or password) of your wallet.
+Check out the section about ["Getting private key from KristWeb"](#getting-your-private-key-from-kristweb)!
 
-`output` is either a string with the krist address which all krist should be tunneled to, or an object. If you go the route of objects, you have to make a key-value pair where the key is an output address, and the value is a number representing the percent of input to send to it. Just read the example config.
+`output` is either a string with the krist address which all krist should be sent to, or an object.
+If you go the route of objects, you have to make a key-value pair where the key is an output address,
+and the value is a number representing the percent to send to it.
 
-`walletFormat` refers to the wallet format you want to use with your private key. You most likly want KristWallet, but in some cases your private key might already be transformed, and you should use `api`. This field is optional, and if you don't specify it, it will guess based on if your private key ends in `-000`.
+`walletFormat` refers to the wallet format you want to use with your private key.
+You most likly want KristWallet, but in some cases your private key might already be transformed, and you should use `api`.
+This field is optional, and if you don't specify it, it will make an educated guess.
 
 Anywhere in the config that you can put an address, you can also put a krist name with or without a metaname.
 
@@ -47,9 +50,10 @@ Anywhere in the config that you can put an address, you can also put a krist nam
 
 No. You cannot use your Kristsplit v1 config with the new version.
 
-### Krist
+### Krist?
 
-Krist is a virtual currency used on some Minecraft servers, mainly [SwitchCraft](https://sc3.io). More information about [Krist at krist.dev](https://krist.dev)
+Krist is a virtual currency used on some Minecraft servers, mainly [SwitchCraft](https://sc3.io).
+More information about Krist is available at [krist.dev](https://krist.dev)
 
 ### Private key? Password?
 
@@ -84,11 +88,12 @@ kristsplit:
 
 ## Tests
 
-This application is tested-ish with Jest. After installing dependencies, you can run `npm test` to run the tests.
+This application is tested-ish with Jest. After installing dependencies, you can run `pnpm run test` to run the tests.
 
 ## Linting
 
-Kristsplit takes use of eslint to lint and format the code. Run `npm run lint` to lint the code. If you wish to automatically fix some problems, use `npm run lint -- --fix`
+Kristsplit takes use of eslint to lint and format the code. Run `pnpm run lint` to lint the code.
+If you wish to automatically fix some problems, use `pnpm run lint -- --fix`
 
 ## Todo
 
@@ -100,3 +105,5 @@ Not done yet:
 
 - Split krist sent to a specific name
 - Split krist sent to a specific metaname
+
+[config.example.json]: https://raw.githubusercontent.com/Erb3/Kristsplit/main/config.example.json "Example configuration file"

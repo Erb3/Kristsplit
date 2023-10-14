@@ -28,7 +28,8 @@
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "lint": "eslint src/**"
+    "lint": "eslint src/**",
+    "preinstall": "npx -y only-allow pnpm"
   },
   "dependencies": {
     "krist": "^2.0.4",
