@@ -1,8 +1,10 @@
 <h1 align="center"> Kristsplit </h1>
 <p align="center">Simple applicaiton to <strong>redirect your krist</strong>!</p>
 
-![GitHub Docker Publish Status](https://img.shields.io/github/actions/workflow/status/Erb3/kristsplit/docker-image.yml?style=flat-square&logo=docker&label=Docker%20image)
-![GitHub Action Tests](https://img.shields.io/github/actions/workflow/status/Erb3/kristsplit/ci.yml?style=flat-square&logo=jest&label=Tests)
+<center>
+  <img src="https://img.shields.io/github/actions/workflow/status/Erb3/kristsplit/docker-image.yml?style=flat-square&logo=docker&label=Docker%20image">
+  <img src="https://img.shields.io/github/actions/workflow/status/Erb3/kristsplit/ci.yml?style=flat-square&logo=jest&label=Tests">
+</center>
 
 ## Configuring
 
@@ -103,7 +105,7 @@ Currently implemented:
 
 Not done yet:
 
-- Split krist sent to a specific name
-- Split krist sent to a specific metaname
+- Split krist sent to a specific (meta)name
+- Real tests with alternative krist nodes
 
 [config.example.json]: https://raw.githubusercontent.com/Erb3/Kristsplit/main/config.example.json "Example configuration file"
