@@ -1,10 +1,10 @@
 <h1 align="center"> Kristsplit </h1>
 <p align="center">Simple applicaiton to <strong>redirect your krist</strong>!</p>
 
-<center>
+<p align="center">
   <img src="https://img.shields.io/github/actions/workflow/status/Erb3/kristsplit/docker-image.yml?style=flat-square&logo=docker&label=Docker%20image">
   <img src="https://img.shields.io/github/actions/workflow/status/Erb3/kristsplit/ci.yml?style=flat-square&logo=jest&label=Tests">
-</center>
+</p>
 
 ## Configuring
 
