@@ -1,29 +1,35 @@
 {
   "name": "kristsplit",
   "version": "2.0.0",
-  "description": "A Krist splitter written in Typescript. Splits krist from one wallet into other(s)",
+  "description": "Redirect your krist with ease, with Kristsplit",
+  "keywords": [
+    "krist",
+    "switchcraft",
+    "cc-tweaked"
+  ],
+  "homepage": "https://github.com/Erb3/Kristsplit#readme",
+  "bugs": {
+    "url": "https://github.com/Erb3/Kristsplit/issues"
+  },
+  "license": "MPL-2.0",
+  "author": {
+    "name": "Erb3",
+    "url": "https://github.com/Erb3"
+  },
+  "funding": {
+    "type": "krist",
+    "url": "https://krist.club/send?to=kristcatm0&metadata=message%3DKristsplit+donation"
+  },
   "main": "src/app.ts",
+  "repository": {
+    "type": "git",
+    "url": "github:erb3/kristsplit"
+  },
   "scripts": {
     "build": "tsc",
     "test": "jest",
     "lint": "eslint src/**"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Erb3/Kristsplit.git"
-  },
-  "keywords": [
-    "krist",
-    "SwitchCraft",
-    "splitter",
-    "redirect"
-  ],
-  "author": "Erb3",
-  "license": " MPL-2.0",
-  "bugs": {
-    "url": "https://github.com/Erb3/Kristsplit/issues"
-  },
-  "homepage": "https://github.com/Erb3/Kristsplit#readme",
   "dependencies": {
     "krist": "^2.0.4",
     "tslog": "^4.9.2",
@@ -39,9 +45,5 @@
     "ts-jest": "^29.1.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
-  },
-  "funding": {
-    "type": "krist",
-    "url": "https://krist.club/send?to=kristcatm0&metadata=message%3DKrist+split+donation"
   }
 }
