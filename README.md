@@ -1,5 +1,5 @@
 <h1 align="center"> Kristsplit </h1>
-<p align="center">Simple applicaiton to <strong>redirect your [krist]</strong>!</p>
+<p align="center">Simple applicaiton to <strong>redirect your <a href="https://krist.dev">krist</a></strong>!</p>
 
 <p align="center">
   <img alt="image of docker status" src="https://img.shields.io/github/actions/workflow/status/Erb3/kristsplit/docker-image.yml?style=flat-square&logo=docker&label=Docker%20image">
