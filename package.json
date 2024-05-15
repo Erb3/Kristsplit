@@ -29,7 +29,7 @@
     "lint": "eslint src/**"
   },
   "dependencies": {
-    "krist": "^2.0.4",
+    "krist": "^3.0.0",
     "tslog": "^4.9.2",
     "zod": "^3.22.4"
   },
