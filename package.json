@@ -35,8 +35,8 @@
   },
   "devDependencies": {
     "@types/bun": "latest",
-    "@typescript-eslint/eslint-plugin": "6.7.5",
-    "@typescript-eslint/parser": "^6.7.5",
+    "@typescript-eslint/eslint-plugin": "7.9.0",
+    "@typescript-eslint/parser": "^7.0.0",
     "eslint": "^8.51.0",
     "typescript": "^5.2.2"
   }
