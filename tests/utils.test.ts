@@ -1,6 +1,6 @@
-import { expect, test, describe } from "@jest/globals";
+import { describe, expect, test } from "bun:test";
+import type { OutputObject } from "../src/types";
 import { calculateOutputs } from "../src/utils";
-import { OutputObject } from "../src/types";
 
 const splits = {
   "100": {

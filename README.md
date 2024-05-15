@@ -1,5 +1,5 @@
 <h1 align="center"> Kristsplit </h1>
-<p align="center">Simple applicaiton to <strong>redirect your krist</strong>!</p>
+<p align="center">Simple applicaiton to <strong>redirect your [krist]</strong>!</p>
 
 <p align="center">
   <img alt="image of docker status" src="https://img.shields.io/github/actions/workflow/status/Erb3/kristsplit/docker-image.yml?style=flat-square&logo=docker&label=Docker%20image">
@@ -48,20 +48,25 @@ Anywhere in the config that you can put an address, you can also put a krist nam
 4. Press "Wallet info"
 5. Find where it says "Privatekey", click "Reveal".
 
-### Can I use my Kristsplit v1 config with v2
+### Can I use my Kristsplit v1 config with v2 or v2?
 
-No. You cannot use your Kristsplit v1 config with the new version.
+No. You cannot use your Kristsplit v1 config with the new versions. v2 configs are compatible with v3.
 
 ### Krist?
 
 Krist is a virtual currency used on some Minecraft servers, mainly [SwitchCraft](https://sc3.io).
-More information about Krist is available at [krist.dev](https://krist.dev)
+More information about Krist is available at [krist]'s website.
 
 ### Private key? Password?
 
 Private key and password are two different things in the krist world!
 A password, is what you give into a wallet hasher, and it outputs a private key!
 If you have a private key (hashed password), you should set the format to `API`.
+
+## Division rest?
+
+Let's say we have a 50/50 split is configured, but it receives k3 from someone.
+It will then give k2 to the first address in the split configuration, and k1 to the other.
 
 ## Deploying
 
@@ -90,12 +95,13 @@ kristsplit:
 
 ## Tests
 
-This application is tested-ish with Jest. After installing dependencies, you can run `pnpm run test` to run the tests.
+This application is tested-ish with the Bun test runner.
+After installing dependencies, you can run `bun run test` to run the tests.
 
 ## Linting
 
-Kristsplit takes use of eslint to lint and format the code. Run `pnpm run lint` to lint the code.
-If you wish to automatically fix some problems, use `pnpm run lint -- --fix`
+Kristsplit takes use of eslint to lint and format the code. Run `bun run lint` to lint the code.
+If you wish to automatically fix some problems, use `bun run lint -- --fix`
 
 ## Todo
 
@@ -109,3 +115,4 @@ Not done yet:
 - Real tests with alternative krist nodes
 
 [config.example.json]: https://raw.githubusercontent.com/Erb3/Kristsplit/main/config.example.json "Example configuration file"
+[krist]: https://krist.dev "Krist website"

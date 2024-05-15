@@ -1,7 +1,6 @@
-import { KristWalletFormatName } from "krist";
+import type { KristWalletFormatName } from "krist";
 
 type OutputObject = { [address: string]: number };
-
 type Outputs = string | OutputObject;
 
 interface Split {
@@ -10,4 +9,4 @@ interface Split {
   outputs: Outputs;
 }
 
-export { OutputObject, Split, Outputs };
+export type { OutputObject, Outputs, Split };
