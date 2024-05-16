@@ -1,30 +1,19 @@
-import { calculateAddress, KristApi } from "krist";
-import { loadConfig } from "./config";
+import { KristApi } from "krist";
+import { z } from "zod";
+import { loadConfig, splitConfig } from "./config";
+import { VERSION } from "./consts";
 import { logger } from "./logger";
-import type { Split } from "./types";
-import { calculateOutputs, getWalletFormat, newTransaction } from "./utils";
+import { calculateOutputs, newTransaction } from "./utils";
 
 const config = await loadConfig(logger);
 
-const splits = new Map<string, Split>();
-config.splits.forEach(async (split) => {
-  const [address, pkey] = await calculateAddress(
-    split.secret,
-    undefined,
-    getWalletFormat(split.secret, split.walletFormat)
-  );
-
-  logger.info(`Registering split for address ${address} with secret ${pkey}`);
-
-  splits.set(address, {
-    privatekey: pkey,
-    outputs: split.output,
-    walletFormat: split.walletFormat,
-  });
+const splitMap: Map<string, z.output<typeof splitConfig>> = new Map();
+config.splits.forEach((v) => {
+  splitMap.set(v.address, v);
 });
 
 const krist = new KristApi({
-  userAgent: "Kristsplit/2 by Erb3 (https://github.com/Erb3/Kristsplit/)",
+  userAgent: `Kristsplit/${VERSION} by Erb3 https://github.com/Erb3/Kristsplit`,
   syncNode: config.node,
 });
 const kristWS = krist.createWsClient({
@@ -32,17 +21,56 @@ const kristWS = krist.createWsClient({
 });
 
 kristWS.on("transaction", async ({ transaction: tx }) => {
-  const split = splits.get(tx.to);
+  const split = splitMap.get(tx.to);
   if (!split) return;
+
+  if (split.conditions?.minAmount && split.conditions.minAmount >= tx.value) {
+    logger.info(
+      `Condition minAmount not met. Got ${tx.value}, expected >= ${split.conditions.minAmount}`
+    );
+    return;
+  }
+
+  if (split.conditions?.maxAmount && split.conditions.maxAmount <= tx.value) {
+    logger.info(
+      `Condition maxAmount not met. Got ${tx.value}, expected <= ${split.conditions.maxAmount}`
+    );
+    return;
+  }
+
+  if (split.conditions?.sender && split.conditions.sender !== tx.from) {
+    logger.info(
+      `Condition sender not met. Got ${tx.from}, expected ${split.conditions.sender}`
+    );
+    return;
+  }
+
+  const names = [
+    `${tx.sent_metaname}@${tx.sent_name}.kst`,
+    `${tx.sent_name}.kst`,
+  ];
+  if (
+    split.conditions?.destination &&
+    !names.includes(split.conditions.destination)
+  ) {
+    logger.info(
+      `Condition destination not met. Got ${names}, expected ${names.join(
+        " or "
+      )}`
+    );
+    return;
+  }
+
   logger.info(`Splitting transaction #${tx.id}`);
 
-  if (typeof split.outputs === "string") {
-    await newTransaction(kristWS, split.outputs, tx.value, split.privatekey);
+  if (typeof split.output === "string") {
+    await newTransaction(kristWS, split.output, tx.value, split.secret);
   } else {
-    const toTransfer = calculateOutputs(split.outputs, tx.value);
+    const toTransfer = calculateOutputs(split.output, tx.value);
+
     Object.keys(toTransfer).forEach(async (address) => {
       const value = toTransfer[address];
-      await newTransaction(kristWS, address, value, split.privatekey);
+      await newTransaction(kristWS, address, value, split.secret);
     });
   }
 });

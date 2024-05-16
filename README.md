@@ -36,6 +36,15 @@ and the value is a number representing the percent to send to it.
 You most likly want KristWallet, but in some cases your private key might already be transformed, and you should use `api`.
 This field is optional, and if you don't specify it, it will make an educated guess.
 
+`conditions` is a set of conditions on which the transaction will be split.
+If a condition fails, the transaction will be ignored.
+These are the following conditions you can use:
+
+- `sender` filters for a specific sender. This can be an address
+- `destination` filters for a the destination. This can be a name, with or without metaname
+- `minAmount` filters for the minimum (inclusive) krist amount sent to split
+- `maxAmount` filters for the maximum (inclusive) krist amount sent to split
+
 Anywhere in the config that you can put an address, you can also put a krist name with or without a metaname.
 
 ## FAQ
@@ -108,11 +117,15 @@ If you wish to automatically fix some problems, use `bun run lint -- --fix`
 Currently implemented:
 
 - Split krist sent to an address
+- Split krist sent to a specific (meta)name
 
 Not done yet:
 
-- Split krist sent to a specific (meta)name
 - Real tests with alternative krist nodes
+- Loop detection
+- Config examples
+- Config builder
+- Condition actions
 
 [config.example.json]: https://raw.githubusercontent.com/Erb3/Kristsplit/main/config.example.json "Example configuration file"
 [krist]: https://krist.dev "Krist website"

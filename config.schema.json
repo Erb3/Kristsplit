@@ -6,6 +6,11 @@
 
   "type": "object",
   "properties": {
+    "$schema": {
+      "type": "string",
+      "title": "Schema",
+      "description": "Pointer to the schema against which this document should be validated. The property is not used by Kristsplit."
+    },
     "splits": {
       "type": "array",
       "items": {
@@ -18,6 +23,27 @@
 
           "walletFormat": {
             "enum": ["kristwallet", "api", "jwalelset"]
+          },
+
+          "conditions": {
+            "type": "object",
+            "properties": {
+              "sender": {
+                "type": "string",
+                "pattern": "^k[a-z0-9]{9}$|^(?:([a-z0-9-_]{1,32})@)?([a-z0-9]{1,64}).kst$"
+              },
+              "destination": {
+                "type": "string",
+                "pattern": "^k[a-z0-9]{9}$|^(?:([a-z0-9-_]{1,32})@)?([a-z0-9]{1,64}).kst$"
+              },
+              "minAmount": {
+                "type": "number"
+              },
+              "maxAmount": {
+                "type": "number"
+              }
+            },
+            "additionalProperties": false
           },
 
           "output": {
@@ -40,7 +66,7 @@
               },
               {
                 "type": "string",
-                "pattern": "^k[a-z0-9]{9}"
+                "pattern": "^k[a-z0-9]{9}$"
               },
               {
                 "type": "string",
@@ -49,12 +75,14 @@
             ]
           }
         },
-        "required": ["secret", "output"]
+        "required": ["secret", "output"],
+        "additionalProperties": false
       }
     },
     "node": {
       "type": "string"
     }
   },
-  "required": ["splits"]
+  "required": ["splits"],
+  "additionalProperties": false
 }
