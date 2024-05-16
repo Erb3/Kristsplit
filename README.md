@@ -72,7 +72,7 @@ Private key and password are two different things in the krist world!
 A password, is what you give into a wallet hasher, and it outputs a private key!
 If you have a private key (hashed password), you should set the format to `API`.
 
-## Division rest?
+### Division rest?
 
 Let's say we have a 50/50 split is configured, but it receives k3 from someone.
 It will then give k2 to the first address in the split configuration, and k1 to the other.
@@ -109,8 +109,9 @@ After installing dependencies, you can run `bun run test` to run the tests.
 
 ## Linting
 
-Kristsplit takes use of eslint to lint and format the code. Run `bun run lint` to lint the code.
-If you wish to automatically fix some problems, use `bun run lint -- --fix`
+Kristsplit uses [Biome](https://biomejs.dev) to lint and format the code.
+Use `bun run lint` to lint the code, `bun run format` to format the code, or `bun run check` for both.
+If you wish to automatically fix some problems, use with `--apply` or `--apply-unsafe`.
 
 ## Todo
 
@@ -126,6 +127,7 @@ Not done yet:
 - Config examples
 - Config builder
 - Condition actions
+- Prometheus
 
 [config.example.json]: https://raw.githubusercontent.com/Erb3/Kristsplit/main/config.example.json "Example configuration file"
 [krist]: https://krist.dev "Krist website"

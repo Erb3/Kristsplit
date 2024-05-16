@@ -1,6 +1,6 @@
 import { KristApi } from "krist";
-import { z } from "zod";
-import { loadConfig, splitConfig } from "./config";
+import type { z } from "zod";
+import { loadConfig, type splitConfig } from "./config";
 import { VERSION } from "./consts";
 import { logger } from "./logger";
 import { calculateOutputs, newTransaction } from "./utils";
@@ -8,9 +8,9 @@ import { calculateOutputs, newTransaction } from "./utils";
 const config = await loadConfig(logger);
 
 const splitMap: Map<string, z.output<typeof splitConfig>> = new Map();
-config.splits.forEach((v) => {
-  splitMap.set(v.address, v);
-});
+for (const split of config.splits) {
+  splitMap.set(split.address, split);
+}
 
 const krist = new KristApi({
   userAgent: `Kristsplit/${VERSION} by Erb3 https://github.com/Erb3/Kristsplit`,
@@ -68,10 +68,9 @@ kristWS.on("transaction", async ({ transaction: tx }) => {
   } else {
     const toTransfer = calculateOutputs(split.output, tx.value);
 
-    Object.keys(toTransfer).forEach(async (address) => {
-      const value = toTransfer[address];
+    for (const [address, value] of Object.entries(toTransfer)) {
       await newTransaction(kristWS, address, value, split.secret);
-    });
+    }
   }
 });
 

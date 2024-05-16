@@ -1,7 +1,7 @@
-import fs from "fs/promises";
+import fs from "node:fs/promises";
 import { calculateAddress } from "krist";
-import path from "path";
-import { type ILogObj, Logger } from "tslog";
+import path from "node:path";
+import type { ILogObj, Logger } from "tslog";
 import { z } from "zod";
 import { getWalletFormat } from "./utils";
 
@@ -46,7 +46,7 @@ export const splitConfig = z
   })
   .strict()
   .refine((v) => {
-    if (typeof v.output == "string") return true;
+    if (typeof v.output === "string") return true;
 
     let sum = 0;
     for (const [, value] of Object.entries(v.output)) {
@@ -62,8 +62,8 @@ export const splitConfig = z
       getWalletFormat(v.secret, v.walletFormat)
     );
 
-    v["address"] = address;
-    v["secret"] = pkey;
+    v.address = address;
+    v.secret = pkey;
     return v;
   });
 
@@ -83,9 +83,9 @@ export async function loadConfig(logger: Logger<ILogObj>) {
   const parsedConfig = await configSchema.safeParseAsync(fileJSON);
 
   if (!parsedConfig.success) {
-    throw new Error("Couldn't parse error due to: " + parsedConfig.error);
+    throw new Error(`Couldn't parse error due to: ${parsedConfig.error}`);
   }
 
-  logger.debug(`Successfully loaded config file`);
+  logger.debug("Successfully loaded config file");
   return parsedConfig.data;
 }

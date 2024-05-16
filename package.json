@@ -26,7 +26,9 @@
     "dev": "bun run --watch ./src/index.ts",
     "test": "bun test",
     "build": "tsc",
-    "lint": "eslint src/**"
+    "lint": "biome lint ./src ./tests",
+    "format": "biome format ./src ./tests",
+    "biome": "biome check ./src ./tests"
   },
   "dependencies": {
     "krist": "^3.0.0",
@@ -34,10 +36,8 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@biomejs/biome": "1.7.3",
     "@types/bun": "latest",
-    "@typescript-eslint/eslint-plugin": "7.9.0",
-    "@typescript-eslint/parser": "^7.0.0",
-    "eslint": "^9.0.0",
     "typescript": "^5.2.2"
   }
 }

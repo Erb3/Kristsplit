@@ -6,9 +6,7 @@ function calculateOutputs(outputs: OutputObject, value: number) {
   const result: OutputObject = {};
   let remaining = value;
 
-  Object.keys(outputs).forEach((address) => {
-    const percent = outputs[address];
-
+  for (const [address, percent] of Object.entries(outputs)) {
     let amount = Math.ceil((value / 100) * percent);
     const left = remaining - amount;
 
@@ -18,7 +16,7 @@ function calculateOutputs(outputs: OutputObject, value: number) {
 
     remaining -= amount;
     result[address] = amount;
-  });
+  }
 
   return result;
 }
