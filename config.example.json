@@ -1,17 +1,17 @@
 {
-  "$schema": "https://raw.githubusercontent.com/Erb3/Kristsplit/main/config.schema.json",
-  "splits": [
-    {
-      "secret": "[Wallet Password]",
-      "output": "kristcatm0"
-    },
-    {
-      "secret": "[Wallet Private Key]",
-      "walletFormat": "api",
-      "output": {
-        "kristcatm0": 25,
-        "ssh2@sc.kst": 75
-      }
-    }
-  ]
+	"$schema": "https://raw.githubusercontent.com/Erb3/Kristsplit/main/config.schema.json",
+	"splits": [
+		{
+			"secret": "[Wallet Password]",
+			"output": "kristcatm0"
+		},
+		{
+			"secret": "[Wallet Private Key]",
+			"walletFormat": "api",
+			"output": {
+				"kristcatm0": 25,
+				"ssh2@sc.kst": 75
+			}
+		}
+	]
 }

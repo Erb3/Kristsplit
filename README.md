@@ -111,7 +111,7 @@ After installing dependencies, you can run `bun run test` to run the tests.
 
 Kristsplit uses [Biome](https://biomejs.dev) to lint and format the code.
 Use `bun run lint` to lint the code, `bun run format` to format the code, or `bun run check` for both.
-If you wish to automatically fix some problems, use with `--apply` or `--apply-unsafe`.
+In linting you can automatically fix some problems by using `--apply` or `--apply-unsafe`.
 
 ## Todo
 

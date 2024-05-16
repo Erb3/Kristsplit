@@ -1,43 +1,39 @@
 {
-  "name": "kristsplit",
-  "version": "3.0.0",
-  "description": "Redirect your krist with ease, with Kristsplit",
-  "main": "src/index.ts",
-  "keywords": [
-    "krist",
-    "switchcraft",
-    "cc-tweaked"
-  ],
-  "homepage": "https://github.com/Erb3/Kristsplit",
-  "bugs": {
-    "url": "https://github.com/Erb3/Kristsplit/issues"
-  },
-  "license": "MPL-2.0",
-  "author": {
-    "name": "Erb3",
-    "url": "https://github.com/Erb3"
-  },
-  "repository": {
-    "type": "git",
-    "url": "github:erb3/kristsplit"
-  },
-  "scripts": {
-    "start": "bun run ./src/index.ts",
-    "dev": "bun run --watch ./src/index.ts",
-    "test": "bun test",
-    "build": "tsc",
-    "lint": "biome lint ./src ./tests",
-    "format": "biome format ./src ./tests",
-    "biome": "biome check ./src ./tests"
-  },
-  "dependencies": {
-    "krist": "^3.0.0",
-    "tslog": "^4.9.2",
-    "zod": "^3.22.4"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "1.7.3",
-    "@types/bun": "latest",
-    "typescript": "^5.2.2"
-  }
+	"name": "kristsplit",
+	"version": "3.0.0",
+	"description": "Redirect your krist with ease, with Kristsplit",
+	"main": "src/index.ts",
+	"keywords": ["krist", "switchcraft", "cc-tweaked"],
+	"homepage": "https://github.com/Erb3/Kristsplit",
+	"bugs": {
+		"url": "https://github.com/Erb3/Kristsplit/issues"
+	},
+	"license": "MPL-2.0",
+	"author": {
+		"name": "Erb3",
+		"url": "https://github.com/Erb3"
+	},
+	"repository": {
+		"type": "git",
+		"url": "github:erb3/kristsplit"
+	},
+	"scripts": {
+		"start": "bun run ./src/index.ts",
+		"dev": "bun run --watch ./src/index.ts",
+		"test": "bun test",
+		"build": "tsc",
+		"lint": "biome lint ./src ./tests",
+		"format": "biome format --write ./src ./tests",
+		"biome": "biome check ./src ./tests"
+	},
+	"dependencies": {
+		"krist": "^3.0.0",
+		"tslog": "^4.9.2",
+		"zod": "^3.22.4"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.7.3",
+		"@types/bun": "latest",
+		"typescript": "^5.2.2"
+	}
 }

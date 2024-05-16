@@ -1,88 +1,88 @@
 {
-  "$schema": "http://json-schema.org/draft-04/schema#",
-  "$id": "https://raw.githubusercontent.com/Erb3/Kristsplit/main/config.schema.json",
-  "title": "Kristsplit config schema",
-  "description": "The JSON schema for Kristsplit config",
+	"$schema": "http://json-schema.org/draft-04/schema#",
+	"$id": "https://raw.githubusercontent.com/Erb3/Kristsplit/main/config.schema.json",
+	"title": "Kristsplit config schema",
+	"description": "The JSON schema for Kristsplit config",
 
-  "type": "object",
-  "properties": {
-    "$schema": {
-      "type": "string",
-      "title": "Schema",
-      "description": "Pointer to the schema against which this document should be validated. The property is not used by Kristsplit."
-    },
-    "splits": {
-      "type": "array",
-      "items": {
-        "type": "object",
+	"type": "object",
+	"properties": {
+		"$schema": {
+			"type": "string",
+			"title": "Schema",
+			"description": "Pointer to the schema against which this document should be validated. The property is not used by Kristsplit."
+		},
+		"splits": {
+			"type": "array",
+			"items": {
+				"type": "object",
 
-        "properties": {
-          "secret": {
-            "type": "string"
-          },
+				"properties": {
+					"secret": {
+						"type": "string"
+					},
 
-          "walletFormat": {
-            "enum": ["kristwallet", "api", "jwalelset"]
-          },
+					"walletFormat": {
+						"enum": ["kristwallet", "api", "jwalelset"]
+					},
 
-          "conditions": {
-            "type": "object",
-            "properties": {
-              "sender": {
-                "type": "string",
-                "pattern": "^k[a-z0-9]{9}$|^(?:([a-z0-9-_]{1,32})@)?([a-z0-9]{1,64}).kst$"
-              },
-              "destination": {
-                "type": "string",
-                "pattern": "^k[a-z0-9]{9}$|^(?:([a-z0-9-_]{1,32})@)?([a-z0-9]{1,64}).kst$"
-              },
-              "minAmount": {
-                "type": "number"
-              },
-              "maxAmount": {
-                "type": "number"
-              }
-            },
-            "additionalProperties": false
-          },
+					"conditions": {
+						"type": "object",
+						"properties": {
+							"sender": {
+								"type": "string",
+								"pattern": "^k[a-z0-9]{9}$|^(?:([a-z0-9-_]{1,32})@)?([a-z0-9]{1,64}).kst$"
+							},
+							"destination": {
+								"type": "string",
+								"pattern": "^k[a-z0-9]{9}$|^(?:([a-z0-9-_]{1,32})@)?([a-z0-9]{1,64}).kst$"
+							},
+							"minAmount": {
+								"type": "number"
+							},
+							"maxAmount": {
+								"type": "number"
+							}
+						},
+						"additionalProperties": false
+					},
 
-          "output": {
-            "anyOf": [
-              {
-                "type": "object",
-                "patternProperties": {
-                  "^k[a-z0-9]{9}": {
-                    "type": "number",
-                    "minimum": 1,
-                    "maximum": 100
-                  },
-                  ".kst$": {
-                    "type": "number",
-                    "minimum": 1,
-                    "maximum": 100
-                  }
-                },
-                "additionalProperties": false
-              },
-              {
-                "type": "string",
-                "pattern": "^k[a-z0-9]{9}$"
-              },
-              {
-                "type": "string",
-                "pattern": ".kst$"
-              }
-            ]
-          }
-        },
-        "required": ["secret", "output"],
-        "additionalProperties": false
-      }
-    },
-    "node": {
-      "type": "string"
-    }
-  },
-  "required": ["splits"],
-  "additionalProperties": false
+					"output": {
+						"anyOf": [
+							{
+								"type": "object",
+								"patternProperties": {
+									"^k[a-z0-9]{9}": {
+										"type": "number",
+										"minimum": 1,
+										"maximum": 100
+									},
+									".kst$": {
+										"type": "number",
+										"minimum": 1,
+										"maximum": 100
+									}
+								},
+								"additionalProperties": false
+							},
+							{
+								"type": "string",
+								"pattern": "^k[a-z0-9]{9}$"
+							},
+							{
+								"type": "string",
+								"pattern": ".kst$"
+							}
+						]
+					}
+				},
+				"required": ["secret", "output"],
+				"additionalProperties": false
+			}
+		},
+		"node": {
+			"type": "string"
+		}
+	},
+	"required": ["splits"],
+	"additionalProperties": false
 }
