@@ -57,9 +57,9 @@ Anywhere in the config that you can put an address, you can also put a krist nam
 4. Press "Wallet info"
 5. Find where it says "Privatekey", click "Reveal".
 
-### Can I use my Kristsplit v1 config with v2 or v2?
+### Can I use my Kristsplit config between major version updates?
 
-No. You cannot use your Kristsplit v1 config with the new versions. v2 configs are compatible with v3.
+No. You cannot use your Kristsplit configs accross major version bumps without migration.
 
 ### Krist?
 

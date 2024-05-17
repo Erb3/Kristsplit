@@ -12,5 +12,13 @@
 		"indentStyle": "tab",
 		"indentWidth": 2,
 		"lineEnding": "lf"
+	},
+	"javascript": {
+		"formatter": {
+			"arrowParentheses": "always",
+			"quoteStyle": "double",
+			"semicolons": "always",
+			"trailingComma": "all"
+		}
 	}
 }
