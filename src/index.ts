@@ -1,24 +1,36 @@
-import { KristApi } from "krist";
+import { calculateAddress, KristApi } from "krist";
 import type { z } from "zod";
 import { loadConfig, type splitConfig } from "./config";
 import { VERSION } from "./consts";
 import { logger } from "./logger";
-import { calculateOutputs, newTransaction } from "./utils";
+import { calculateOutputs, getWalletFormat, newTransaction } from "./utils";
 
 const config = await loadConfig(logger);
 
 const splitMap: Map<string, z.output<typeof splitConfig>> = new Map();
 for (const split of config.splits) {
-	splitMap.set(split.address, split);
+	const [address, pkey] = await calculateAddress(
+		split.secret,
+		undefined,
+		getWalletFormat(split.secret, split.walletFormat)
+	);
+
+	split.secret = pkey;
+	logger.debug(
+		`Registered split for address ${address} with private key ${pkey}`
+	);
+	splitMap.set(address, split);
 }
 
 const krist = new KristApi({
-	userAgent: `Kristsplit/${VERSION} by Erb3 https://github.com/Erb3/Kristsplit`,
+	userAgent: `Kristsplit+v${VERSION}+github-com-Erb3-kristsplit`,
 	syncNode: config.node,
 });
 const kristWS = krist.createWsClient({
 	initialSubscriptions: ["transactions"],
 });
+
+logger.debug(`Sync node is set to ${config.node}`);
 
 kristWS.on("transaction", async ({ transaction: tx }) => {
 	const split = splitMap.get(tx.to);
@@ -26,21 +38,21 @@ kristWS.on("transaction", async ({ transaction: tx }) => {
 
 	if (split.conditions?.minAmount && split.conditions.minAmount >= tx.value) {
 		logger.info(
-			`Condition minAmount not met. Got ${tx.value}, expected >= ${split.conditions.minAmount}`,
+			`Condition minAmount not met. Got ${tx.value}, expected >= ${split.conditions.minAmount}`
 		);
 		return;
 	}
 
 	if (split.conditions?.maxAmount && split.conditions.maxAmount <= tx.value) {
 		logger.info(
-			`Condition maxAmount not met. Got ${tx.value}, expected <= ${split.conditions.maxAmount}`,
+			`Condition maxAmount not met. Got ${tx.value}, expected <= ${split.conditions.maxAmount}`
 		);
 		return;
 	}
 
 	if (split.conditions?.sender && split.conditions.sender !== tx.from) {
 		logger.info(
-			`Condition sender not met. Got ${tx.from}, expected ${split.conditions.sender}`,
+			`Condition sender not met. Got ${tx.from}, expected ${split.conditions.sender}`
 		);
 		return;
 	}
@@ -55,8 +67,8 @@ kristWS.on("transaction", async ({ transaction: tx }) => {
 	) {
 		logger.info(
 			`Condition destination not met. Got ${names}, expected ${names.join(
-				" or ",
-			)}`,
+				" or "
+			)}`
 		);
 		return;
 	}
@@ -74,4 +86,10 @@ kristWS.on("transaction", async ({ transaction: tx }) => {
 	}
 });
 
+kristWS.on("ready", (motd) => {
+	logger.info(`Ready! MOTD is: ${motd.motd.replaceAll("\n", "")}`);
+});
+
+logger.debug("Connecting to Krist WebSocket");
 await kristWS.connect();
+logger.info("Connected to Krist WebSocket");

@@ -1,9 +1,7 @@
 import fs from "node:fs/promises";
-import { calculateAddress } from "krist";
 import path from "node:path";
 import type { ILogObj, Logger } from "tslog";
 import { z } from "zod";
-import { getWalletFormat } from "./utils";
 
 export const splitConfig = z
 	.object({
@@ -14,13 +12,13 @@ export const splitConfig = z
 				sender: z
 					.string()
 					.regex(
-						/^k[a-z0-9]{9}$|^(?:([a-z0-9-_]{1,32})@)?([a-z0-9]{1,64}).kst$/i,
+						/^k[a-z0-9]{9}$|^(?:([a-z0-9-_]{1,32})@)?([a-z0-9]{1,64}).kst$/i
 					)
 					.optional(),
 				destination: z
 					.string()
 					.regex(
-						/^k[a-z0-9]{9}$|^(?:([a-z0-9-_]{1,32})@)?([a-z0-9]{1,64}).kst$/i,
+						/^k[a-z0-9]{9}$|^(?:([a-z0-9-_]{1,32})@)?([a-z0-9]{1,64}).kst$/i
 					)
 					.optional(),
 				minAmount: z.number().int().finite().optional(),
@@ -34,15 +32,9 @@ export const splitConfig = z
 					z.string().length(10).startsWith("k").toLowerCase(),
 					z.string().endsWith(".kst").toLowerCase(),
 				]),
-				z.number().min(0).max(100).int(),
+				z.number().min(0).max(100).int()
 			),
 		]),
-		address: z
-			.string()
-			.default("")
-			.describe(
-				"I love writing bad practice code, like this. Do not use the address field, it will be overwritten!",
-			),
 	})
 	.strict()
 	.refine((v) => {
@@ -54,22 +46,11 @@ export const splitConfig = z
 		}
 
 		return sum === 100;
-	}, "Output split sums total to 100%")
-	.transform(async (v) => {
-		const [address, pkey] = await calculateAddress(
-			v.secret,
-			undefined,
-			getWalletFormat(v.secret, v.walletFormat),
-		);
-
-		v.address = address;
-		v.secret = pkey;
-		return v;
-	});
+	}, "Output split sums total to 100%");
 
 export const configSchema = z
 	.object({
-		node: z.string().url().startsWith("https://").default("https://krist.dev/"),
+		node: z.string().url().startsWith("https://").default("https://krist.dev"),
 		splits: z.array(splitConfig),
 		$schema: z.string().optional(),
 	})
