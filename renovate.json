@@ -1,5 +1,5 @@
 {
 	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
 	"extends": ["config:recommended", "customManagers:biomeVersions"],
-	"schedule": ["* * * 1,3,6,9 *"]
+	"schedule": ["every 3 months on the first day of the month"]
 }
