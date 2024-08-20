@@ -6,6 +6,9 @@
   <img alt="image of ci status" src="https://img.shields.io/github/actions/workflow/status/Erb3/kristsplit/ci.yml?style=flat-square&logo=jest&label=Tests">
 </p>
 
+> [!IMPORTANT]
+> I am no longer interested in Krist, and as such this repository has been archived.
+
 ## Configuring
 
 To get started download the [config.example.json] file as `config.json`.
